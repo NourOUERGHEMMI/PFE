@@ -10,6 +10,8 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 
 app = Flask(__name__)
 
+historique = [] # les messages & reponses
+
 def generativeai(input: str):
     response = model.generate_content(input)
     return response.text
@@ -22,7 +24,8 @@ def home():
         message = request.form.get('send', '')
         if message:
             answer = generativeai(message)
-    return render_template('index.html', answer=answer)
+            historique.append((message, answer))
+    return render_template('index.html', liste=historique)
 
 if __name__ == '__main__':
     app.run(debug=True)

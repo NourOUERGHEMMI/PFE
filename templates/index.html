@@ -4,14 +4,17 @@
     <title>Minimal Web App</title>
 </head>
 <body>
+    <div>
+        {% for message in liste %}
+  			<div>{{ message[0] }}</div>
+            <div>{{ message[1] }}</div>
+  		{% endfor %}
+    </div>
+
     <form method="POST">
         <input type="text" name="send" placeholder="message à envoyer">
         <button type="submit">Envoyer</button>
     </form>
-
-    <div>
-        {{ answer }}
-    </div>
 </body>
 </html>
 
