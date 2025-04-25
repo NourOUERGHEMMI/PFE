@@ -1,47 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gemini Chatbot</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        #chat { width: 100%; max-width: 600px; margin: auto; }
-        .message { margin: 10px 0; }
-        .user { color: blue; }
-        .bot { color: green; }
-    </style>
+    <title>Minimal Web App</title>
 </head>
 <body>
-    <div id="chat">
-        <h2>Gemini Chatbot</h2>
-        <div id="messages"></div>
-        <input type="text" id="input" placeholder="Type your message..." />
-        <button onclick="sendMessage()">Send</button>
+    <form method="POST">
+        <input type="text" name="send" placeholder="message à envoyer">
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <div>
+        {{ answer }}
     </div>
-
-    <script>
-        function addMessage(sender, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'message ' + sender;
-            msgDiv.textContent = sender + ": " + text;
-            document.getElementById('messages').appendChild(msgDiv);
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('input');
-            const message = input.value;
-            if (!message) return;
-
-            addMessage('user', message);
-            input.value = '';
-
-            fetch('/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
-            })
-            .then(res => res.json())
-            .then(data => addMessage('bot', data.reply));
-        }
-    </script>
 </body>
 </html>
+

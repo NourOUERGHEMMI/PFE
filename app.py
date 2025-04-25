@@ -1,43 +1,28 @@
-from flask import Flask, render_template, request, jsonify
-import requests
+from flask import Flask, render_template, request
+from dotenv import load_dotenv
+import google.generativeai as genai
+import requests, os
+
+#### generative AI ####
+load_dotenv()
+genai.configure(api_key=os.getenv('API_KEY'))
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 app = Flask(__name__)
 
-# Replace this with your actual Gemini API key
-API_KEY = 'YOUR_GEMINI_API_KEY'
+def generativeai(input: str):
+    response = model.generate_content(input)
+    return response.text
 
-GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'
-
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
-
-@app.route('/chat', methods=['POST'])
-def chat():
-    user_message = request.json.get('message')
-
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    params = {
-        'key': API_KEY
-    }
-    data = {
-        "contents": [
-            {"parts": [{"text": user_message}]}
-        ]
-    }
-
-    response = requests.post(GEMINI_URL, headers=headers, params=params, json=data)
-    gemini_response = response.json()
-    
-    try:
-        reply = gemini_response['candidates'][0]['content']['parts'][0]['text']
-    except:
-        reply = "Sorry, I couldn't understand that."
-
-    return jsonify({'reply': reply})
+    message = ''
+    answer = ''
+    if request.method == 'POST':
+        message = request.form.get('send', '')
+        if message:
+            answer = generativeai(message)
+    return render_template('index.html', answer=answer)
 
 if __name__ == '__main__':
     app.run(debug=True)
-

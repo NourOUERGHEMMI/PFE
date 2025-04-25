@@ -6,3 +6,9 @@ git commit -m "message"
 git push origin main
     kinamel ena changement fel code bch nzidou al github
 
+pip freeze > requirements.txt
+    tekhou list pip tsobhom fi fichier requirements
+    list pip= la liste des librairies eli khdemt behom
+
+pip install -r requirements.txt
+    lire la liste dans requirements et la installer
