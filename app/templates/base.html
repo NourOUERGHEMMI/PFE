@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+	<head>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+                <!-- Intro -->
+				{%block intro%}{%endblock%}
+
+				<!-- Header -->
+				<header id="header">
+				    <a href="{{ url_for('main.index') }}" class="logo">NORDIN</a>
+				</header>
+			
+				<!-- Nav bar -->
+				<nav id="nav">
+                	{%block nav%}{%endblock%}
+				</div>	
+
+				<!-- Main -->
+				<div id="main">
+					{%block main%}{%endblock%}
+				</div>
+                
+                <!-- Footer -->
+				<div id="footer">
+                	{%block footer%}{%endblock%} 
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src=""></script>
+
+	</body>
+</html>
