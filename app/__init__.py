@@ -14,8 +14,11 @@ def create_app():
     
     # create databases and tables if they do not exist
     from .models import User
+    from .forms import create_admin
     with app.app_context():
+        db.drop_all()
         db.create_all()
+        create_admin(db)
     
     #import and register blueprints
     from . import auth, routes
