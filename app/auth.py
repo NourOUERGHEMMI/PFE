@@ -38,8 +38,8 @@ def login():
     if request.method == 'POST':
         user = valid_login(request)
         # create class object based on role
-        user = db.session.query(UserPoly).filter(UserPoly.email == user.email).first()
         if user:
+            user = db.session.query(UserPoly).filter(UserPoly.email == user.email).first()
             login_user(user)
             return redirect(url_for("auth.admin" if current_user.role=="admin" else "main.dashboard"))
     return render_template('login.html')
@@ -54,7 +54,10 @@ def logout():
 #ADMIN 
 @bp.route('/admin')
 def admin():
-    if current_user.role != "admin":
-        abort(404)
+    if current_user.is_authenticated:
+        if current_user.role != "admin":
+            abort(404)
+        else:
+            return render_template('admin.html')
     else:
-        return render_template('admin.html')
+        return redirect(url_for("auth.login"))

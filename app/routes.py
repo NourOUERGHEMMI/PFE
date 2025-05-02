@@ -9,8 +9,8 @@ bp = Blueprint('main', __name__)
 def dashboard():
     """
     if not current_user.status:
-        flash("Your account is not active yet.")
+        print("Your account is not active yet.")
         return redirect(url_for('auth.login'))
-"""
+    """
     return render_template('user.html')
 
