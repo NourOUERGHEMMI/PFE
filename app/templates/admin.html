@@ -1,9 +1,42 @@
-{% extends "base.html" %}
-
-{%block intro%}{%endblock%}
-
-{%block nav%}{%endblock%}
-
+{% extends "base.html" %} 
+{%block intro%}{%endblock%} 
+{%block nav%}{%endblock%} 
 {% block main %}
-ADMIN
+<table>
+    <thead>
+        <tr>
+            <th>EMAIL</th>
+            <th>PRENOM</th>
+            <th>NOM</th>
+            <th>PAYS</th>
+            <th>ROLE</th>
+            <th>STATUS</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for user in users%}
+        <tr>
+            <td>{{user.email}}</td>
+            <td>{{user.prenom}}</td>
+            <td>{{user.nom}}</td>
+            <td>{{user.pays}}</td>
+            <td>{{user.role}}</td>
+            <td>
+                {% if not user.status %}
+                    <form action="{{ url_for('admin.activate_user', user_id=user.id) }}" method="POST">
+                        <button type="submit">Activate</button>
+                    </form>
+                {% else %}
+                    <span>Active</span>
+                {% endif %}
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<!--logout button-->
+<form action="{{ url_for('auth.logout') }}" method="POST">
+    <button type="submit">Logout</button>
+</form>
 {% endblock %}

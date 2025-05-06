@@ -1,6 +1,16 @@
 import google.generativeai as genai
+import os
+from dotenv import load_dotenv
 
-genai.configure(api_key="AIzaSyBGzbotmSZkQR6NbE-vGIzRfddIqQxnrK0")
-model = genai.GenerativeModel("gemini-1.5-flash")
-response = model.generate_content("Explain how AI works")
-print(response.text)
+api_key=os.getenv('API_KEY')
+
+# generative AI ####
+load_dotenv()
+genai.configure(api_key)
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+def generativeai(input: str):
+    response = model.generate_content(input)
+    return response.text
+
+# GOOGLE MEET

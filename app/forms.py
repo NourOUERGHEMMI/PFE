@@ -9,7 +9,17 @@ def create_admin(db):
          role='admin',
          status=1
     )
+    # active USER for testing
+    user = User(
+        email="user@user",
+        mdp=generate_password_hash('user'),
+        nom="HERO",
+        prenom="BOKA",
+        status=1
+    ) 
+    
     db.session.add(admin)
+    db.session.add(user)
     db.session.commit()
 
 def verif_signup(signup_req):

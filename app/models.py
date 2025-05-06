@@ -23,13 +23,16 @@ class User(db.Model, UserMixin):
         pass
     
 class Admin(User):
-    status=1
     __mapper_args__ = {'polymorphic_identity': "admin"}
+    
+    def __init__(self, **kwargs):
+        super().__init__()
+        self.status=1
     
     def activate_user(self, user):
         user.status = 1
         db.session.commit()
-        
+    """    
     def deactivate_user(self, user):
         user.status = 0
         db.session.commit()
@@ -43,7 +46,7 @@ class Admin(User):
         if user:
             user.role = role
             db.session.commit()
-
+    """
 class RH(User):
     __mapper_args__ = {'polymorphic_identity': 'rh'}
 
