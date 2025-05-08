@@ -30,7 +30,6 @@ def dashboard():
     
     if current_user.role == 'rh':
         pass # create events etc...
-    # GOOGLE MEET API
     
     return render_template('user.html', user=current_user, answers=session['answers'])
 

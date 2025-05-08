@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
         'polymorphic_identity': 'employee'
     }
     
-    def participate_event(self, event):
+    def join_event(self, event):
         pass
     
 class Admin(User):
@@ -32,21 +32,16 @@ class Admin(User):
     def activate_user(self, user):
         user.status = 1
         db.session.commit()
-    """    
+   
     def deactivate_user(self, user):
         user.status = 0
         db.session.commit()
 
-    def delete_user(user):
+    def delete_user(self, user):
         if user:
             db.session.delete(user)
             db.session.commit()
-            
-    def promote_user(user, role):
-        if user:
-            user.role = role
-            db.session.commit()
-    """
+
 class RH(User):
     __mapper_args__ = {'polymorphic_identity': 'rh'}
 

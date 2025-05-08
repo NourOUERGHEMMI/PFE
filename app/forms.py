@@ -9,17 +9,18 @@ def create_admin(db):
          role='admin',
          status=1
     )
-    # active USER for testing
-    user = User(
-        email="user@user",
-        mdp=generate_password_hash('user'),
-        nom="HERO",
-        prenom="BOKA",
-        status=1
-    ) 
+    # active USERs for testing
+    for i in "123456789":
+        user = User(
+            email=f"user{i}@user",
+            mdp=generate_password_hash('user'),
+            nom="HERO",
+            prenom="BOKA",
+            status=1
+        ) 
+        db.session.add(user)
     
     db.session.add(admin)
-    db.session.add(user)
     db.session.commit()
 
 def verif_signup(signup_req):
@@ -54,7 +55,7 @@ def valid_login(request):
     
     user = User.query.filter_by(email=email).first()
     if user:
-        if check_password_hash(user.mdp, mdp):# and user.status:
+        if check_password_hash(user.mdp, mdp):
             return user
         else:
             flash('Incorrect mdp, try again.')

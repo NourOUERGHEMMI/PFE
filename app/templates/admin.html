@@ -1,7 +1,8 @@
 {% extends "base.html" %} 
-{%block intro%}{%endblock%} 
+{%block intro%}<h1>Admin: {{admin.email}}</h1>{%endblock%} 
 {%block nav%}{%endblock%} 
 {% block main %}
+<h2>USERS</h2>
 <table>
     <thead>
         <tr>
@@ -11,10 +12,11 @@
             <th>PAYS</th>
             <th>ROLE</th>
             <th>STATUS</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {%for user in users%}
+        {%for user in users if user.role != 'admin'%}
         <tr>
             <td>{{user.email}}</td>
             <td>{{user.prenom}}</td>
@@ -22,13 +24,21 @@
             <td>{{user.pays}}</td>
             <td>{{user.role}}</td>
             <td>
-                {% if not user.status %}
+                {%if user.status%}
+                    <form action="{{ url_for('admin.deactivate_user', user_id=user.id) }}" method="POST">
+                        <button type="submit">Deactivate</button>
+                    </form>
+                {% else %}
                     <form action="{{ url_for('admin.activate_user', user_id=user.id) }}" method="POST">
                         <button type="submit">Activate</button>
                     </form>
-                {% else %}
-                    <span>Active</span>
                 {% endif %}
+            </td>
+            <td>
+                <!--delete button-->
+                <form action="{{ url_for('admin.delete_user', user_id=user.id) }}" method="POST">
+                    <button type="submit" style="color: red;">Delete</button>
+                </form>
             </td>
         </tr>
         {%endfor%}
