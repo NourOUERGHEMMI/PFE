@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for, session
 from flask_login import login_required, current_user
-from .API import generativeai
+from ..API import generativeai
 
 bp = Blueprint('main', __name__)
 
@@ -24,7 +24,7 @@ def dashboard():
     if request.method == 'POST':
         msg = request.form['msg']
         if msg:
-            ans = generativeai("".join(session['answers']))
+            ans = generativeai(input=msg)
             session['answers'].append((msg, ans))
             session.modified=True
     

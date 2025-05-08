@@ -21,7 +21,7 @@ def create_app():
         create_admin(db)
     
     #import and register blueprints
-    from . import auth, routes, admin
+    from .views import auth, routes, admin
     app.register_blueprint(auth.bp)
     app.register_blueprint(routes.bp)   
     app.register_blueprint(admin.bp)   
