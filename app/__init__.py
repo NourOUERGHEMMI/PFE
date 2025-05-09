@@ -13,7 +13,6 @@ def create_app():
     login_manager.init_app(app)
     
     # create databases and tables if they do not exist
-    from .models import User
     from .forms import create_admin
     with app.app_context():
         db.drop_all()
@@ -21,12 +20,14 @@ def create_app():
         create_admin(db)
     
     #import and register blueprints
-    from .views import auth, routes, admin
+    from .views import auth, routes, admin, rh
     app.register_blueprint(auth.bp)
     app.register_blueprint(routes.bp)   
-    app.register_blueprint(admin.bp)   
+    app.register_blueprint(admin.bp) 
+    app.register_blueprint(rh.bp)  
  
     #return active session
+    from .models import User
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))

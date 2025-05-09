@@ -1,7 +1,53 @@
+""" FOR HANDLING REQUESTS """
+
 from flask import flash
 from werkzeug.security import check_password_hash, generate_password_hash
-from .models import User
+from werkzeug.utils import secure_filename
+from .models import User, Document, Event
 
+# EVENT Configuration
+def valid_event(request, id):
+    from datetime import datetime
+    event_date = datetime.strptime(request.form['date'], '%Y-%m-%d')
+    event = {
+        'rh_id': id,
+        'name': request.form['name'],
+        'place': request.form['place'],
+        'date': event_date
+    }
+    return Event(
+        name=event['name'],
+        place=event['place'],
+        date=event['date'],
+        rh_id=event['rh_id']
+    )
+
+# FILE UPLOAD Configuration (SERVER SIDE VALIDATION FOR EXTRA SECURITY)
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'txt'}
+    #MIME validation
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def valid_file(request, id):
+    uploaded_file = request.files.get('file')
+    if not uploaded_file or uploaded_file.filename == '':
+        flash('No selected file', 'error')
+        return False
+    
+    filename = secure_filename(uploaded_file.filename)
+    
+    if not allowed_file(filename):
+        flash('File type not allowed', 'error')
+        return False
+    
+    new_document = Document(
+            filename=filename,
+            file_ext=filename.rsplit('.', 1)[1].lower(),
+            data=uploaded_file.read(),
+            emp_id=id
+        )
+    return new_document
+    
 def create_admin(db):
     admin = User(
          email='admin@admin',
@@ -10,16 +56,20 @@ def create_admin(db):
          status=1
     )
     # active USERs for testing
-    for i in "123456789":
-        user = User(
-            email=f"user{i}@user",
-            mdp=generate_password_hash('user'),
-            nom="HERO",
-            prenom="BOKA",
-            status=1
-        ) 
-        db.session.add(user)
-    
+    rh = User(
+        email=f"rh@user",
+        mdp=generate_password_hash('user'),
+        role="rh",
+        status=1
+    ) 
+    user = User(
+        email=f"user@user",
+        mdp=generate_password_hash('user'),
+        role="employee",
+        status=1
+    ) 
+    db.session.add(rh)
+    db.session.add(user)
     db.session.add(admin)
     db.session.commit()
 
