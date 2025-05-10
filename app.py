@@ -5,7 +5,7 @@ import requests, os
 
 #### generative AI ####
 load_dotenv()
-genai.configure(api_key=os.getenv('API_KEY'))
+genai.configure(api_key="AIzaSyAtSwlaDqK6iAkqaM-MFP2Do0FvphXUxTo")
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 app = Flask(__name__)
