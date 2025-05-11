@@ -1,0 +1,122 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-box {
+    display: flex;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 30px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    overflow: visible;
+    max-width: 900px;
+    width: 100%;
+    backdrop-filter: blur(3px);
+    align-items: center;
+    padding-left: 70px;
+}
+
+.login-form-left {
+    flex: 1 1 350px;
+    min-width: 320px;
+    max-width: 400px;
+    padding: 48px 24px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-left h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0rem;
+    margin-top: -10px;
+}
+
+.login-subtitle {
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+.login-form-left label {
+    color: #bfc9e0;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.login-form-left input {
+    background-color: #ffffff18;
+    backdrop-filter: blur(5px);
+    border-radius: 100px;
+    border: 1px solid #ffffff;
+    padding: 1rem 0.7rem;
+}
+
+.login-form-left input[type="email"],
+.login-form-left input[type="password"],
+.login-password-row {
+    width: 400px;
+}
+
+.login-form-left input:focus {
+    box-shadow: 0 0 0 2px #4e8cff;
+}
+
+.forgot-link {
+    color: #4e8cff;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.login-bottom-text {
+    margin-top: 2rem;
+    color: #ffffff;
+    font-size: 1rem;
+    width: 350px;
+}
+
+.signup-link {
+    color: #4e8cff;
+    text-decoration: none;
+    margin-left: 0.3rem;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.login-form-right {
+    flex: 1;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+}
+
+.login-form-left form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.login-form-left .btn {
+    display: block;
+    margin: 1.2rem auto 0 auto;
+    width: 180px;
+}
