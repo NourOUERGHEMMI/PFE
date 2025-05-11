@@ -12,3 +12,9 @@ pip freeze > requirements.txt
 
 pip install -r requirements.txt
     lire la liste dans requirements et la installer
+
+to add folder from different branch
+    git fetch origin    
+    git checkout origin/branch name "folder name"
+    git add "folder name"
+    git commit -m "msg"

@@ -1,43 +1,24 @@
 <!DOCTYPE HTML>
 <html lang="fr">
 	<head>
+		{%block head%}{% endblock %}
 	</head>
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    <body class="is-preload">
+        <!-- Flask flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div>{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-				<!--flask flash-->
-				{% with messages = get_flashed_messages(with_categories=true) %}
-					{% if messages %}
-						{% for category, message in messages %}
-							<div>{{ message }}</div>
-						{% endfor %}
-					{% endif %}
-				{% endwith %}
-
-
-                <!-- Intro -->
-				{%block intro%}{%endblock%}
-			
-				<!-- Nav bar -->
-				<nav id="nav">
-                	{%block nav%}{%endblock%}
-				</div>	
-
-				<!-- Main -->
-				<div id="main">
-					{%block main%}{%endblock%}
-				</div>
-                
-                <!-- Footer -->
-				<div id="footer">
-                	{%block footer%}{%endblock%} 
-				</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src=""></script>
-
-	</body>
+        <!-- Main -->
+        <div id="main">
+            {% block main %}{% endblock %}
+        </div>
+		
+        <!-- Scripts -->
+		{% block scripts %}{% endblock %}
+    </body>
 </html>

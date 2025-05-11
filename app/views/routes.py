@@ -13,7 +13,7 @@ def index():
     INDEX PAGE
     PAGE INDEX
     """
-    return '<h2>INDEX PAGE</h2>'
+    return render_template('index.html')
 
 @bp.route('/dashboard', methods=('GET', 'POST')) 
 @login_required

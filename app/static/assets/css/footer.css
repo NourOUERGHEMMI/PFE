@@ -1,0 +1,124 @@
+/* Footer */
+
+footer {
+    background-image: url("../../imagesimages/img_landing/footer.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center -150px;
+    padding: 3rem 5vw 1.5rem 5vw;
+    color: #fff;
+    margin-top: 2rem;
+    font-weight: 200;
+    border-top: 1px solid #001861;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.footer-col {
+    min-width: 180px;
+    flex: 1 1 180px;
+}
+
+.footer-title {
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.footer-title img {
+    width: 200px;
+    height: auto;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: var(--muted);
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+}
+
+.newsletter-input {
+    padding: 0.7em 1em;
+    border-radius: 100px;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    border: 0.5px solid #ffffff;
+    background: #ffffff25;
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+    width: 50%;
+}
+
+.newsletter-btn {
+    width: 30px;
+    height: 30px;
+    background: #81A8FD;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+    margin-left: -45px;
+    margin-top: 5px;
+    z-index: 1;
+}
+
+.newsletter-btn:hover {
+    background: var(--accent);
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-socials a {
+    color: var(--primary);
+    font-size: 1.3rem;
+    transition: color 0.2s;
+}
+
+.footer-socials img {
+    width: 30px;
+    height: 30px;
+}
+
+.footer-socials a:hover {
+    color: var(--accent);
+}
