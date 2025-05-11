@@ -1,7 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="fr">
 	<head>
-		{%block head%}{% endblock %}
+		<meta charset="UTF-8">
+		<title>VirtuLink</title>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/img_landing/logo_icn.png') }}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/header.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/body_landing.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footer.css') }}">
 	</head>
     <body class="is-preload">
         <!-- Flask flash messages -->
@@ -13,11 +22,105 @@
             {% endif %}
         {% endwith %}
 
+		<!-- Header -->
+		<header>
+		    <div class="logo"><img src="{{ url_for('static', filename='images/img_landing/logo_icn.png') }}" alt="Virtulink"></div>
+		    <div class="nav-links">
+		        <a href="#home" class="active">Home</a>
+		        <a href="#about">About</a>
+		        <a href="#demo">Contacts</a>
+		    </div>
+		    <div class="nav-right">
+		        <div class="lang-switcher" style="margin-left:20px;position:relative;">
+		            <button id="langBtn" style="background:none;border:none;cursor:pointer;font-size:1.5rem;outline:none;">
+		            <img src="{{ url_for('static', filename='images/header/globe.png') }}" alt="LNG">
+		        </button>
+		            <div id="langMenu" class="lang-menu">
+		                <div class="lang-option" data-lang="en" style="padding:0.3em 0.7em;cursor:pointer;">English</div>
+		                <div class="lang-option" data-lang="fr" style="padding:0.3em 0.7em;cursor:pointer;">Frensh</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Spanish</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Arabic</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Chinese</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">German</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Dutch</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Spanish</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Irish</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Italian</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Portuguese</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Romanian</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Romansh</div>
+		                <div class="lang-option" data-lang="es" style="padding:0.3em 0.7em;cursor:pointer;">Ukrainian</div>
+		            </div>
+		        </div>
+		        <div class="nav-actions">
+		            <button class="btn">Sign up</button>
+		            <span class="login-link">Log in</span>
+		        </div>
+		    </div>
+		    <div class="burger" id="burgerMenu">
+		        <span></span><span></span><span></span>
+		    </div>
+		</header>
+
         <!-- Main -->
         <div id="main">
             {% block main %}{% endblock %}
         </div>
-		
+
+		<!-- Footer -->
+		<footer>
+		    <div class="footer-row">
+		        <div class="footer-col">
+		            <div class="footer-title"><img src="{{ url_for('static', filename='images/img_landing/logo_typ.png') }}" alt="VirtuLink"></div>
+		            <div>Subscribe to the VirtuLink newsletter and never miss a beat.</div>
+		            <form class="newsletter-form" id="newsletterForm">
+		                <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="you@email.com" required>
+		                <button class="newsletter-btn" type="submit">→</button>
+		            </form>
+		            <div id="newsletterMsg" style="color:var(--primary);margin-top:0.5rem;font-size:0.95rem;"></div>
+		        </div>
+		        <div class="footer-row">
+		            <div class="footer-col">
+		                <div class="footer-title">Product</div>
+		                <div class="footer-links">
+		                    <a href="#about">About</a>
+		                    <a href="#features">Features</a>
+		                    <a href="#demo">Demo</a>
+		                    <a href="#contact">Contact</a>
+		                </div>
+		            </div>
+		            <div class="footer-col">
+		                <div class="footer-title">Infopro Digital Group</div>
+		                <div class="footer-links">
+		                    <a href="#">About</a>
+		                    <a href="#">The Sectors</a>
+		                    <a href="#">Contact</a>
+		                </div>
+		            </div>
+		            <div class="footer-col">
+		                <div class="footer-title">Legal</div>
+		                <div class="footer-links">
+		                    <a href="#">Privacy</a>
+		                    <a href="#">Terms</a>
+		                    <a href="#">Security</a>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		    <div style="display: flex; justify-content: space-between; align-items: center;">
+		        <div class="footer-socials">
+		            <a href="#"><img src="{{ url_for('static', filename='images/footer/twit.png') }}" alt="twitter"></a>
+		            <a href="#"><img src="{{ url_for('static', filename='images/footer/link.png') }}" alt="linkedin"></a>
+		            <a href="#"><img src="{{ url_for('static', filename='images/footer/fb.png') }}" alt="facebook"></a>
+		            <a href="#"><img src="{{ url_for('static', filename='images/footer/ggl.png') }}" alt="instagram"></a>
+		            <a href="#"><img src="{{ url_for('static', filename='images/footer/ytb.png') }}" alt="youtube"></a>
+		        </div>
+		        <div class="footer-bottom">
+		            © 2025 VirtuLink – All Rights Reserved
+		        </div>
+		    </div>
+		</footer>
+
         <!-- Scripts -->
 		{% block scripts %}{% endblock %}
     </body>
