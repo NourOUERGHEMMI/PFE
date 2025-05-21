@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Visio Immersive</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='videoco.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bienvenue sur Visio Immersive</h1>
+        <button id="createRoomBtn">Créer une réunion</button>
+        <button id="join-call-btn">Rejoindre l'appel</button>
+        <div id="videoContainer"></div>
+    </div>
+    <script src="https://unpkg.com/@daily-co/daily-js"></script>
+    <script src="{{ url_for('static', filename='videoco.js') }}"></script>
+</body>
+
+</html>

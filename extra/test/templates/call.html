@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Appel Vidéo</title>
+    <script src="https://unpkg.com/@daily-co/daily-js"></script>
+    <style>
+        body {
+            background: #222;
+            color: #fff;
+            text-align: center;
+        }
+        
+        #videoContainer {
+            margin: 40px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{ event.title }}</h1>
+    <div id="videoContainer"></div>
+    <script>
+        const callFrame = window.DailyIframe.createFrame(document.getElementById('videoContainer'), {
+            showLeaveButton: true,
+            iframeStyle: {
+                width: '100%',
+                height: '600px',
+                border: '0',
+                borderRadius: '20px',
+                boxShadow: '0 8px 32px 0 rgba(31,38,135,0.37)'
+            }
+        });
+        callFrame.join({
+            url: "{{ event.meeting_url }}"
+        });
+        // Les boutons micro/caméra sont intégrés par Daily.co
+    </script>
+</body>
+
+</html>

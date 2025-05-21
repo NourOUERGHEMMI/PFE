@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des événements</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='videoco.css') }}">
+    <style>
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.17);
+            color: #fff;
+        }
+        
+        .event-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .event-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .event-desc {
+            margin-bottom: 10px;
+        }
+        
+        .event-meta {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        
+        .event-link {
+            background: #6dd5ed;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        
+        .event-link:hover {
+            background: #2193b0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Liste des événements</h1>
+        {% for event in events %}
+        <div class="event-card">
+            {% if event.image %}
+            <img src="{{ event.image }}" alt="Image de l'événement" class="event-image"> {% endif %}
+            <div class="event-title">{{ event.title }}</div>
+            <div class="event-desc">{{ event.description }}</div>
+            <div class="event-meta">Date : {{ event.date }} | Heure : {{ event.heure }}</div>
+            <a href="/call/{{ event.id }}" class="event-link">Rejoindre la réunion</a>
+        </div>
+        {% endfor %}
+    </div>
+    <form id="eventForm">
+        <input type="text" name="title" placeholder="Titre" required><br>
+        <textarea name="description" placeholder="Description"></textarea><br>
+        <input type="date" name="date" required><br>
+        <input type="time" name="heure" required><br>
+        <input type="text" name="image" placeholder="URL de l'image"><br>
+        <button type="submit">Créer l'événement</button>
+    </form>
+    <script>
+        document.getElementById('eventForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = {
+                title: form.title.value,
+                description: form.description.value,
+                date: form.date.value,
+                heure: form.heure.value,
+                image: form.image.value
+            };
+            const res = await fetch('/create-room', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                alert('Événement créé !');
+                window.location.href = '/events';
+            } else {
+                alert('Erreur lors de la création');
+            }
+        };
+    </script>
+</body>
+
+</html>
