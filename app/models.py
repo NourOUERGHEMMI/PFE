@@ -29,9 +29,11 @@ class Event(db.Model, UserMixin):
     __tablename__ = 'events'
     
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150), nullable=False)
-    place = db.Column(db.String(150), nullable=False)
+    title = db.Column(db.String(150), nullable=False)
+    description = db.Column(db.String(150), nullable=False)
     date = db.Column(db.DateTime, nullable=False)
+    heure = db.Column(db.String(50), nullable=False)
+    img = db.Column(db.LargeBinary)
     rh_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     
 class Document(db.Model, UserMixin):

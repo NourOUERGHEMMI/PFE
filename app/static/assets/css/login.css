@@ -16,17 +16,16 @@ body {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     overflow: visible;
     max-width: 900px;
-    width: 100%;
     backdrop-filter: blur(3px);
     align-items: center;
-    padding-left: 70px;
+    padding: 40px 70px;
 }
 
 .login-form-left {
     flex: 1 1 350px;
     min-width: 320px;
     max-width: 400px;
-    padding: 48px 24px 40px 40px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
