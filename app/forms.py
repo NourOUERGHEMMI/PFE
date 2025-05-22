@@ -7,19 +7,13 @@ from .models import User, Document, Event
 
 # EVENT Configuration
 def valid_event(request, id):
-    from datetime import datetime
-    event_date = datetime.strptime(request.form['date'], '%Y-%m-%d')
-    event = {
-        'rh_id': id,
-        'name': request.form['name'],
-        'place': request.form['place'],
-        'date': event_date
-    }
     return Event(
-        name=event['name'],
-        place=event['place'],
-        date=event['date'],
-        rh_id=event['rh_id']
+        title=request.form['title'],
+        description=request.form['description'],
+        date=request.form['date'],
+        heure=request.form['heure'],
+        img=request.files['img'].read(),
+        rh_id=id
     )
 
 # FILE UPLOAD Configuration (SERVER SIDE VALIDATION FOR EXTRA SECURITY)
@@ -83,13 +77,15 @@ def verif_signup(signup_req):
 
 def valid_signup(request):
     signup_req = {
+        'role': request.form['role'],
         'email': request.form['email'],
         'nom': request.form['nom'],
         'prenom': request.form['prenom'],
         'mdp': request.form['mdp'],
         'confirm_mdp': request.form['confirm_mdp'],
         'pays': request.form['pays'],
-        'img': request.files['img'].read()
+        'secteur': request.form['secteur'],
+        'poste': request.form['poste']
     }
 
     if verif_signup(signup_req):

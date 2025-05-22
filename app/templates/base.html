@@ -1,9 +1,17 @@
 <!DOCTYPE HTML>
+<!--
+BEFORE LOGIN: 
+	ABOUT_AS, 
+	CONTACT, 
+	LOGIN, 
+	SIGN_UP, 
+	INDEX
+-->
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<title>VirtuLink</title>
-		<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/img_landing/logo_icn.png') }}">
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/header/logo_icn.png') }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +33,7 @@
 
 		<!-- Header -->
 		<header>
-		    <div class="logo"><img src="{{ url_for('static', filename='images/img_landing/logo_icn.png') }}" alt="Virtulink"></div>
+		    <div class="logo"><img src="{{ url_for('static', filename='images/header/logo_icn_b.png') }}" alt="Virtulink"></div>
 		    <div class="nav-links">
 		        <a href="#home" class="active">Home</a>
 		        <a href="#about">About</a>
@@ -34,7 +42,7 @@
 		    <div class="nav-right">
 		        <div class="lang-switcher" style="margin-left:20px;position:relative;">
 		            <button id="langBtn" style="background:none;border:none;cursor:pointer;font-size:1.5rem;outline:none;">
-		            <img src="{{ url_for('static', filename='images/header/globe.png') }}" alt="LNG">
+		            <img src="{{ url_for('static', filename='images/header/language.png') }}" alt="LNG">
 		        </button>
 		            <div id="langMenu" class="lang-menu">
 		                <div class="lang-option" data-lang="en" style="padding:0.3em 0.7em;cursor:pointer;">English</div>
@@ -72,7 +80,7 @@
 		<footer>
 		    <div class="footer-row">
 		        <div class="footer-col">
-		            <div class="footer-title"><img src="{{ url_for('static', filename='images/img_landing/logo_typ.png') }}" alt="VirtuLink"></div>
+		            <div class="footer-title"><img src="{{ url_for('static', filename='images/footer/logo_b.png') }}" alt="VirtuLink"></div>
 		            <div>Subscribe to the VirtuLink newsletter and never miss a beat.</div>
 		            <form class="newsletter-form" id="newsletterForm">
 		                <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="you@email.com" required>
@@ -124,6 +132,7 @@
 
         <!-- Scripts -->
 		{% block scripts %}{% endblock %}
+		<script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
 		<script src="{{ url_for('static', filename='assets/js/footer.js') }}"></script>
 		<script src="{{ url_for('static', filename='assets/js/header.js') }}"></script>
 		<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>

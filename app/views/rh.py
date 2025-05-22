@@ -8,17 +8,19 @@ bp = Blueprint('rh', __name__, url_prefix='/rh')
 @bp.route('/', methods=['GET', 'POST']) 
 @login_required
 def index():
-    if current_user.role != 'rh':
-        return redirect(url_for('main.dashboard'))
-    
-    events = Event.query.filter_by(rh_id=current_user.id).all()
-    return render_template('rh.html', user=current_user, events=events,)
+    return "<h1>RH INDEX</h1>"
 
 @bp.route('/create_event', methods=['GET', 'POST']) 
 @login_required
 def create_event():
-    if current_user.role != 'rh':
-        return redirect(url_for('main.dashboard'))
+    if current_user.role != 'employee':
+        return redirect(
+            url_for(
+                "admin.admin" if current_user.role == "admin" else
+                "rh.index" if current_user.role == "rh" else
+                "main.dashboard"
+            )
+        )
     
     if request.method == 'POST':
         event = valid_event(request, current_user.id)
@@ -30,8 +32,14 @@ def create_event():
 @bp.route('/delete_event/<int:event_id>', methods=['GET', 'POST'])
 @login_required
 def delete_event(event_id):
-    if current_user.role != "rh":
-        return redirect(url_for('main.dashboard'))
+    if current_user.role != 'employee':
+        return redirect(
+            url_for(
+                "admin.admin" if current_user.role == "admin" else
+                "rh.index" if current_user.role == "rh" else
+                "main.dashboard"
+            )
+        )
     
     event = Event.query.get_or_404(event_id)
     current_user.delete_event(event)

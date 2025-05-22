@@ -1,31 +1,112 @@
 {% extends "base.html" %}
 
-{%block nav%}{%endblock%}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/signup.css') }}">
+{% endblock %}
 
 {%block main%}
-<h2>SIGN UP</h2>
-<form method="POST" enctype="multipart/form-data">
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br>
-
-    <label>Nom:</label><br>
-    <input type="text" name="nom" required><br>
-
-    <label>Prénom:</label><br>
-    <input type="text" name="prenom" required><br>
-
-    <label>Mot de passe:</label><br>
-    <input type="password" name="mdp" required><br>
-
-    <label>Confirmer le mot de passe:</label><br>
-    <input type="password" name="confirm_mdp" required><br>
-
-    <label>Pays:</label><br>
-    <input type="text" name="pays" required><br>
-
-    <label>Image:</label><br>
-    <input type="file" name="img"><br><br>
-
-    <button type="submit">Sign Up</button>
-  </form>
+<form id="multiStepForm" method="POST">
+    <!--STEP 1-->
+    <div id="step-1" class="step active">
+        <div class="form-box">
+            <div class="progress-bar-horizontal">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+            <h2 class="form-title">Let's get to know you !</h2>
+            <p class="form-subtitle">Are you a Human Resources Director or a regular employee?</p>
+            <!--ROLE CHOICE-->
+            <div class="role-choice-row">
+                <button class="role-btn-circle" type="button" data-value="rh">Human Resources Director</button>
+                <button class="role-btn-circle" type="button" data-value="employee">Regular Employee</button>
+                <input type="hidden" name="choice" id="userChoice">
+            </div>
+            <p class="form-desc">Choose your path and unlock your virtual workspace!</p>
+            <p class="form-login">You already have an account yet? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+        </div>
+    </div>
+    <!--STEP 2-->
+    <div id="step-2" class="step" style="display: none;">
+        <img src="{{ url_for('static', filename='images/img_landing/choise.png') }}" class="back-arrow" onclick="goBackToChoice()" style="position:absolute;left:30px;top:30px;">
+        <div class="progress-bar-horizontal">
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot active"></div>
+        </div>
+        <h2 class="form-title">Personal Information</h2>
+        <p class="form-subtitle">Start by filling in your basic details</p>
+        <div class="form-box">
+            <!--NAME-->
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" placeholder="Name" required name="prenom">
+            </div>
+            <!--LASTNAME-->
+            <div class="form-group">
+                <label>Lastname</label>
+                <input type="text" placeholder="Lastname" required name="nom">
+            </div>
+            <!--MAIL-->
+            <div class="form-group">
+                <label>Mail</label>
+                <input type="email" placeholder="login@gmail.com" required name="email">
+            </div>
+            <!--PWD-->
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="************" required name="mdp">
+            </div>
+            <!--CONFIRM PWD-->
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="************" required name="confirm_mdp">
+            </div>
+            <!--COUNTRY-->
+            <div class="form-group">
+                <label for="empCountrySelect">Your Country</label>
+                <select name="pays" id="empCountrySelect" class="form-control" required>
+                    <option value="" disabled selected>Your Country</option>
+                    <option value="France">France</option>
+                    <option value="USA">USA</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Romania">Romania</option>
+                </select>
+            </div>
+            <!--SECTEUR-->
+            <div class="form-group">
+                <label for="empIndustrySelect">Industry</label>
+                <select name="secteur" id="empIndustrySelect" class="form-control" required>
+                    <option value="" disabled selected>Industry</option>
+                    <option value="IT">IT</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Education">Education</option>
+                    <option value="Retail">Retail</option>
+                </select>
+            </div>
+            <!--POSTE-->
+            <div class="form-group">
+                <label for="empJobTitleSelect">Job Title</label>
+                <select name="poste" id="empJobTitleSelect" class="form-control" required>
+                    <option value="" disabled selected>Job Title</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Analyst">Analyst</option>
+                    <option value="Consultant">Consultant</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn-form">Confirm <img src="{{ url_for('static', filename='images/img_landing/flaiche.png') }}" style="margin-left: 10px;vertical-align:middle;"></button>
+        <p class="form-login">You already have an account yet? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+    </div>
+</form>
 {%endblock%}
+
+{%block scripts%}
+<script src="{{ url_for('static', filename='assets/js/signup.js') }}"></script>
+{% endblock %}

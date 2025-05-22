@@ -25,7 +25,13 @@ def sign_up():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("admin.admin" if current_user.role=="admin" else "main.dashboard"))
+        return redirect(
+            url_for(
+                "admin.admin" if current_user.role == "admin" else
+                "rh.index" if current_user.role == "rh" else
+                "main.dashboard"
+            )
+        )
 
     if request.method == 'POST':
         user = valid_login(request)
