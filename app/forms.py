@@ -76,17 +76,28 @@ def verif_signup(signup_req):
     return True
 
 def valid_signup(request):
-    signup_req = {
-        'role': request.form['role'],
-        'email': request.form['email'],
-        'nom': request.form['nom'],
-        'prenom': request.form['prenom'],
-        'mdp': request.form['mdp'],
-        'confirm_mdp': request.form['confirm_mdp'],
-        'pays': request.form['pays'],
-        'secteur': request.form['secteur'],
-        'poste': request.form['poste']
-    }
+    try:
+        signup_req = {
+            'role': request.form['role'],
+            'email': request.form['email'],
+            'nom': request.form['nom'],
+            'prenom': request.form['prenom'],
+            'mdp': request.form['mdp'],
+            'confirm_mdp': request.form['confirm_mdp'],
+            'pays': request.form['pays'],
+            'secteur': request.form['secteur'],
+            'poste': request.form['poste']
+        }
+    except:
+        signup_req = {
+            'role': request.form['role'],
+            'email': request.form['email'],
+            'nom': request.form['nom'],
+            'prenom': request.form['prenom'],
+            'mdp': request.form['mdp'],
+            'confirm_mdp': request.form['confirm_mdp'],
+            'pays': request.form['pays']
+        }
 
     if verif_signup(signup_req):
         del signup_req['confirm_mdp']

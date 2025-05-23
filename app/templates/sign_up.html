@@ -2,109 +2,148 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/signup.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/login.css') }}">
 {% endblock %}
 
 {%block main%}
-<form id="multiStepForm" method="POST">
-    <!--STEP 1-->
-    <div id="step-1" class="step active">
-        <div class="form-box">
-            <div class="progress-bar-horizontal">
-                <div class="progress-dot active"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
+<div class="login-container">
+    <div class="login-form-box">
+        <div class="login-form-left">
+            <form method="POST">
+                <!--ROLE-->
+                <div id="roleSelection" class="role-container">
+                    <!-- Progress bar horizontale fine -->
+                    <div class="progress-bar-horizontal">
+                        <div class="progress-dot active"></div>
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot"></div>
+                    </div>
+                    <h1>Let’s get to know you!</h1>
+                    <p>Are you a Human Resources Director or a regular employee?</p>
+                    <div class="role">
+                        <div class="role-btn-circle">
+                            <label><input type="radio" name="role" value="rh" onclick="handleRoleSelection('rh')">Human Resources Director</label>
+                        </div>
+                        <div class="role-btn-circle">
+                            <label><input type="radio" name="role" value="employee" onclick="handleRoleSelection('employee')">Regular Employee</label>
+                        </div>
+                    </div>
+                    <p>Choose your path and unlock your virtual workspace!</p>
+                </div>
+
+                <!-- COMMON FIELDS -->
+                <div id="commonFields" style="display:none;">
+                    <!-- Progress bar horizontale fine -->
+                    <div class="progress-bar-horizontal">
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot active"></div>
+                        <div class="progress-dot"></div>
+                    </div>
+
+                    <h2>Personal Information</h2>
+                    <p class="login-subtitle">Start by filling in your basic details</p>
+
+                    <!-- Email -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="login-email">Email</label>
+                        <input type="email" name="email" id="login-email" placeholder="login@gmail.com" required><br>
+                    </div>
+
+                    <!-- Password -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="login-password">Password</label>
+                        <input type="password" name="mdp" id="login-password" placeholder="************" required><br>
+                    </div>
+                    
+                    <!-- CONFIRM Password -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="confirm_mdp">Confirm Password:</label>
+                        <input type="password" id="confirm_mdp" name="confirm_mdp" required><br>
+                    </div>
+
+                    <!-- Last Name (Nom) -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="nom">Last Name:</label>
+                        <input type="text" id="nom" name="nom" required><br>
+                    </div>
+                    
+                    <!-- First Name (Prenom) -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="prenom">First Name:</label>
+                        <input type="text" id="prenom" name="prenom" required><br>
+                    </div>
+
+                    <!-- Country (Pays) -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="pays">Country:</label>
+                        <select id="pays" name="pays" required>
+                            <option value="TUNISIA">TUNISIA</option>
+                            <option value="USA">USA</option>
+                            <option value="CHINA">CHINA</option>
+                            <option value="GERMANY">GERMANY</option>
+                            <option value="AUSTRIA">AUSTRIA</option>
+                            <option value="BELGIUM">BELGIUM</option>
+                            <option value="SPAIN">SPAIN</option>
+                            <option value="FRANCE">FRANCE</option>
+                            <option value="IRELAND">IRELAND</option>
+                            <option value="ITALY">ITALY</option>
+                            <option value="NETHERLANDS">NETHERLANDS</option>
+                            <option value="PORTUGAL">PORTUGAL</option>
+                            <option value="ROMANIA">ROMANIA</option>
+                            <option value="UK">UK</option>
+                            <option value="SWITZERLAND">SWITZERLAND</option>
+                            <option value="UKRAINE">UKRAINE</option>
+                            <option value="AUSTRALIA">AUSTRALIA</option>
+                        </select><br>
+                    </div>
+                    <!--proceed button-->
+                    <div style="display: none; flex-direction: column; justify-content: start;" id="proceedButton">
+                        <button class="btn" style="width: 160px;" onclick="validateExtraFields()">Proceed <span style="margin-left: 10px;"><img src="{{ url_for('static', filename='images/img_landing/flaiche.png') }}"></span></button>    
+                    </div>
+                </div>
+                <!-- EXTRA FIELDS -->
+                <div id="extraFields" style="display:none;">
+                    <!-- Progress bar horizontale fine -->
+                    <div class="progress-bar-horizontal">
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot active"></div>
+                    </div>
+
+                    <!-- Sector (Secteur) -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="secteur">Sector:</label>
+                        <select name="secteur">
+                            <option value="CONSTRUCTION & PUBLIC SECTOR">CONSTRUCTION & PUBLIC SECTOR</option>
+                            <option value="AUTOMOTIVE">AUTOMOTIVE</option>
+                            <option value="RISK & INSURANCE">RISK & INSURANCE</option>
+                            <option value="INDUSTRY">INDUSTRY</option>
+                            <option value="RETAIL">RETAIL</option>
+                        </select><br>
+                    </div>
+                    <!-- Sector (Secteur) -->
+                    <div style="display: flex; flex-direction: column; justify-content: start;">
+                        <label for="poste">Job Title</label>
+                        <select name="poste" class="form-control">
+                            <option value="Developer">Developer</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Designer">Designer</option>
+                            <option value="Analyst">Analyst</option>
+                            <option value="Consultant">Consultant</option>
+                        </select><br>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div style="display: none; flex-direction: column; justify-content: start;" id="submitButton">
+                    <button type="submit" class="btn" style="width: 160px;">CONFIRM <span style="margin-left: 10px;"><img src="{{ url_for('static', filename='images/img_landing/flaiche.png') }}"></span></button>    
+                </div>
+            </form>
+            <div class="login-bottom-text">
+                <p class="form-login">You already have an account yet? <a href="{{ url_for('auth.login') }}">Log in</a></p>
             </div>
-            <h2 class="form-title">Let's get to know you !</h2>
-            <p class="form-subtitle">Are you a Human Resources Director or a regular employee?</p>
-            <!--ROLE CHOICE-->
-            <div class="role-choice-row">
-                <button class="role-btn-circle" type="button" data-value="rh">Human Resources Director</button>
-                <button class="role-btn-circle" type="button" data-value="employee">Regular Employee</button>
-                <input type="hidden" name="choice" id="userChoice">
-            </div>
-            <p class="form-desc">Choose your path and unlock your virtual workspace!</p>
-            <p class="form-login">You already have an account yet? <a href="{{ url_for('auth.login') }}">Log in</a></p>
         </div>
     </div>
-    <!--STEP 2-->
-    <div id="step-2" class="step" style="display: none;">
-        <img src="{{ url_for('static', filename='images/img_landing/choise.png') }}" class="back-arrow" onclick="goBackToChoice()" style="position:absolute;left:30px;top:30px;">
-        <div class="progress-bar-horizontal">
-            <div class="progress-dot"></div>
-            <div class="progress-dot"></div>
-            <div class="progress-dot active"></div>
-        </div>
-        <h2 class="form-title">Personal Information</h2>
-        <p class="form-subtitle">Start by filling in your basic details</p>
-        <div class="form-box">
-            <!--NAME-->
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="Name" required name="prenom">
-            </div>
-            <!--LASTNAME-->
-            <div class="form-group">
-                <label>Lastname</label>
-                <input type="text" placeholder="Lastname" required name="nom">
-            </div>
-            <!--MAIL-->
-            <div class="form-group">
-                <label>Mail</label>
-                <input type="email" placeholder="login@gmail.com" required name="email">
-            </div>
-            <!--PWD-->
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" placeholder="************" required name="mdp">
-            </div>
-            <!--CONFIRM PWD-->
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" placeholder="************" required name="confirm_mdp">
-            </div>
-            <!--COUNTRY-->
-            <div class="form-group">
-                <label for="empCountrySelect">Your Country</label>
-                <select name="pays" id="empCountrySelect" class="form-control" required>
-                    <option value="" disabled selected>Your Country</option>
-                    <option value="France">France</option>
-                    <option value="USA">USA</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Romania">Romania</option>
-                </select>
-            </div>
-            <!--SECTEUR-->
-            <div class="form-group">
-                <label for="empIndustrySelect">Industry</label>
-                <select name="secteur" id="empIndustrySelect" class="form-control" required>
-                    <option value="" disabled selected>Industry</option>
-                    <option value="IT">IT</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Healthcare">Healthcare</option>
-                    <option value="Education">Education</option>
-                    <option value="Retail">Retail</option>
-                </select>
-            </div>
-            <!--POSTE-->
-            <div class="form-group">
-                <label for="empJobTitleSelect">Job Title</label>
-                <select name="poste" id="empJobTitleSelect" class="form-control" required>
-                    <option value="" disabled selected>Job Title</option>
-                    <option value="Developer">Developer</option>
-                    <option value="Manager">Manager</option>
-                    <option value="Designer">Designer</option>
-                    <option value="Analyst">Analyst</option>
-                    <option value="Consultant">Consultant</option>
-                </select>
-            </div>
-        </div>
-        <button type="submit" class="btn-form">Confirm <img src="{{ url_for('static', filename='images/img_landing/flaiche.png') }}" style="margin-left: 10px;vertical-align:middle;"></button>
-        <p class="form-login">You already have an account yet? <a href="{{ url_for('auth.login') }}">Log in</a></p>
-    </div>
-</form>
+</div>
 {%endblock%}
 
 {%block scripts%}

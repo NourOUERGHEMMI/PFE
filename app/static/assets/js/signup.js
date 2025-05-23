@@ -1,25 +1,41 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.role-btn-circle');
-    const userChoiceInput = document.getElementById('userChoice');
+function validateExtraFields() {
+  event.preventDefault();
+  const requiredFields = document.querySelectorAll('#commonFields input[required], #commonFields select[required], #commonFields textarea[required]');
+  let allFilled = true;
+  
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      allFilled = false;
+      field.style.border = '1px solid red';
+    } else {
+      field.style.border = '';
+    }
+  });
+  if (allFilled) {
+    extraFields(1);
+  }
+}
 
-    buttons.forEach(button => {
-        button.addEventListener('click', function () {
-            const choice = this.getAttribute('data-value');
-            userChoiceInput.value = choice;
+function extraFields(click) {
+  if (click === 1){
+      document.getElementById('commonFields').style.display = 'none';
+      document.getElementById('extraFields').style.display = 'block';
+      document.getElementById('proceedButton').style.display = 'none';
+      document.getElementById('submitButton').style.display = 'flex';
+    }
+}
 
-            document.getElementById('step-1').classList.remove('active');
-            document.getElementById('step-1').style.display = 'none';
+function handleRoleSelection(role) {
+  document.getElementById('roleSelection').style.display = 'none';
+  document.getElementById('commonFields').style.display = 'block';
 
-            document.getElementById('step-2').classList.add('active');
-            document.getElementById('step-2').style.display = 'block';
-        });
-    });
-
-    window.goBackToChoice = function () {
-        document.getElementById('step-2').classList.remove('active');
-        document.getElementById('step-2').style.display = 'none';
-
-        document.getElementById('step-1').classList.add('active');
-        document.getElementById('step-1').style.display = 'block';
-    };
-});
+  if (role === 'employee') {
+    document.getElementById('proceedButton').style.display = 'flex';
+    extraFields();
+  }
+  else {
+    document.getElementById('extraFields').style.display = 'none';
+    document.getElementById('proceedButton').style.display = 'none';
+    document.getElementById('submitButton').style.display = 'flex';
+  }
+}

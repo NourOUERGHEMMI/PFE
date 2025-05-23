@@ -32,17 +32,24 @@ body {
     justify-content: center;
 }
 
-.login-form-left h2 {
+h2{
     font-size: 2.5rem;
     font-weight: 700;
     color: #fff;
     margin-bottom: 0rem;
     margin-top: -10px;
+    text-align: center;           
+    white-space: nowrap;
 }
 
 .login-subtitle {
     color: #ffffff;
     margin-bottom: 2rem;
+    font-weight: 700;
+    margin-bottom: 0rem;
+    margin-top: -10px;
+    text-align: center;           
+    white-space: nowrap;
 }
 
 .login-form-left label {
@@ -52,21 +59,23 @@ body {
     display: block;
 }
 
-.login-form-left input {
+.login-form-left input, select {
     background-color: #ffffff18;
     backdrop-filter: blur(5px);
     border-radius: 100px;
     border: 1px solid #ffffff;
     padding: 1rem 0.7rem;
+    width: 400px;
 }
 
 .login-form-left input[type="email"],
 .login-form-left input[type="password"],
+.login-form-left input[type="text"],
 .login-password-row {
     width: 400px;
 }
 
-.login-form-left input:focus {
+.login-form-left input:focus, select:focus {
     box-shadow: 0 0 0 2px #4e8cff;
 }
 
