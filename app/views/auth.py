@@ -39,7 +39,13 @@ def login():
             user = User.query.filter(User.email==user.email).first()
             if user.status == 1:
                 login_user(user)
-                return redirect(url_for("admin.admin" if user.role=="admin" else "main.dashboard"))
+                return redirect(
+                    url_for(
+                        "admin.admin" if current_user.role == "admin" else
+                        "rh.index" if current_user.role == "rh" else
+                        "main.dashboard"
+                    )
+                )
             else:
                 flash("Your account is not active yet.")
                 return redirect(url_for('auth.login'))

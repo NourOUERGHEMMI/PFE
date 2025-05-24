@@ -8,7 +8,7 @@ bp = Blueprint('rh', __name__, url_prefix='/rh')
 @bp.route('/', methods=['GET', 'POST']) 
 @login_required
 def index():
-    return "<h1>RH INDEX</h1>"
+    return render_template('rh/profil_rh.html')
 
 @bp.route('/create_event', methods=['GET', 'POST']) 
 @login_required

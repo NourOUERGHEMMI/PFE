@@ -1,0 +1,102 @@
+{% extends "base_profil.html"%}
+{%block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/profile/profile_rh.css') }}">
+{%endblock%}
+
+{%block content%}
+<div class="created-events">
+    <div class="section-header">
+        <h3>Your Created Events</h3>
+        <div class="filter-section">
+            <select class="filter-select" id="ideaFilter">
+                <option value="all">All Sectors</option>
+                <option value="automotive">Construction & Public Sector</option>
+                <option value="technology">Automotive</option>
+                <option value="manufacturing">Risk & Insurance</option>
+                <option value="energy">Industry</option>
+                <option value="healthcare">Retail</option>
+            </select>
+        </div>
+    </div>
+    <div class="events-list">
+        <div class="event-card" style="background-image: url('{{ url_for('static', filename='images/after_co/automotive.png') }}');">
+            <div class="event-overlay">
+                <div class="event-arrow">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Go" />
+                </div>
+                <span class="event-type">Industry Conference</span>
+                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                <div class="event-meta">
+                    <span><img src="{{ url_for('static', filename='images/after_co/callender.png') }}" alt="date" /> 10.03.2026</span>
+                    <span><img src="{{ url_for('static', filename='images/after_co/horloge.png') }}" alt="time" /> 10H30</span>
+                </div>
+            </div>
+        </div>
+        <div class="event-card" style="background-image: url('{{ url_for('static', filename='images/after_co/industry.png') }}');">
+            <div class="event-overlay">
+                <div class="event-arrow">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Go" />
+                </div>
+                <span class="event-type">Automotive Event</span>
+                <p>A showcase of innovation and design in the automotive industry, featuring technology.</p>
+                <div class="event-meta">
+                    <span><img src="{{ url_for('static', filename='images/after_co/callender.png') }}" alt="date" /> 10.03.2026</span>
+                    <span><img src="{{ url_for('static', filename='images/after_co/horloge.png') }}" alt="time" /> 10H30</span>
+                </div>
+            </div>
+        </div>
+        <div class="event-card" style="background-image: url('{{ url_for('static', filename='images/after_co/automotive.png') }}');">
+            <div class="event-overlay">
+                <div class="event-arrow">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Go" />
+                </div>
+                <span class="event-type">Industry Conference</span>
+                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                <div class="event-meta">
+                    <span><img src="{{ url_for('static', filename='images/after_co/callender.png') }}" alt="date" /> 10.03.2026</span>
+                    <span><img src="{{ url_for('static', filename='images/after_co/horloge.png') }}" alt="time" /> 10H30</span>
+                </div>
+            </div>
+        </div>
+        <div class="event-card" style="background-image: url('{{ url_for('static', filename='images/after_co/industry.png') }}');">
+            <div class="event-overlay">
+                <div class="event-arrow">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Go" />
+                </div>
+                <span class="event-type">Automotive Event</span>
+                <p>A showcase of innovation and design in the automotive industry, featuring technology.</p>
+                <div class="event-meta">
+                    <span><img src="{{ url_for('static', filename='images/after_co/callender.png') }}" alt="date" /> 10.03.2026</span>
+                    <span><img src="{{ url_for('static', filename='images/after_co/horloge.png') }}" alt="time" /> 10H30</span>
+                </div>
+            </div>
+        </div>
+        <div class="event-card" style="background-image: url('{{ url_for('static', filename='images/after_co/automotive.png') }}');">
+            <div class="event-overlay">
+                <div class="event-arrow">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Go" />
+                </div>
+                <span class="event-type">Industry Conference</span>
+                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                <div class="event-meta">
+                    <span><img src="{{ url_for('static', filename='images/after_co/callender.png') }}" alt="date" /> 10.03.2026</span>
+                    <span><img src="{{ url_for('static', filename='images/after_co/horloge.png') }}" alt="time" /> 10H30</span>
+                </div>
+            </div>
+        </div>
+        <div class="event-card" style="background-image: url('{{ url_for('static', filename='images/after_co/industry.png') }}');">
+            <div class="event-overlay">
+                <div class="event-arrow">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Go" />
+                </div>
+                <span class="event-type">Automotive Event</span>
+                <p>A showcase of innovation and design in the automotive industry, featuring technology.</p>
+                <div class="event-meta">
+                    <span><img src="{{ url_for('static', filename='images/after_co/callender.png') }}" alt="date" /> 10.03.2026</span>
+                    <span><img src="{{ url_for('static', filename='images/after_co/horloge.png') }}" alt="time" /> 10H30</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

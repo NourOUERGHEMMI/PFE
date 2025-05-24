@@ -1,0 +1,73 @@
+{% extends "base_profil.html"%}
+{%block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/profile/profile_emp.css') }}">
+{%endblock%}
+
+{%block content%}
+<div class="your-documents">
+    <h3>Your Uploaded Documents</h3>
+    <div class="documents-list">
+        {% for file in files%}
+        <div class="document-card">
+            <div class="doc-header">
+                <span class="doc-title">{{file.category}}</span>
+                <button class="delete-doc-btn" title="Delete">
+                    <img src="{{ url_for('static', filename='images/after_co/poub.png') }}" alt="Delete">
+                </button>
+            </div>
+
+            <div class="doc-type">{{file.type_file}}</div>
+            <div class="doc-desc">{{file.description}}</div>
+            <div class="doc-actions">
+                <!--STATUS-->
+                <div>
+                {%if file.status == "pending"%}
+                    <button class="doc-action-btn" title="Download">
+                        <img src="{{ url_for('static', filename='images/after_co/check-circle.png') }}" alt="Download">
+                    </button>
+                    <button class="doc-action-btn" title="Download">
+                        <img src="{{ url_for('static', filename='images/after_co/not_check.png') }}" alt="Download">
+                    </button>
+                {%elif file.status == "approved"%}
+                    <button class="doc-action-btn" title="Download">
+                        <img src="{{ url_for('static', filename='images/after_co/check.png') }}" alt="Download">
+                    </button>
+                    <button class="doc-action-btn" title="Download">
+                        <img src="{{ url_for('static', filename='images/after_co/not_check.png') }}" alt="Download">
+                    </button>
+                {%else%}
+                    <button class="doc-action-btn" title="Download">
+                        <img src="{{ url_for('static', filename='images/after_co/check-circle.png') }}" alt="Download">
+                    </button>
+                    <button class="doc-action-btn" title="Download">
+                        <img src="{{ url_for('static', filename='images/after_co/not_checked.png') }}" alt="Download">
+                    </button>
+                {%endif%}
+                </div>
+                <!--SHOW-->
+                <button class="doc-action-btn" title="Open"
+                    data-category="{{ file.category }}"
+                    data-type="{{ file.type_file }}"
+                    data-description="{{ file.description }}"
+                    onclick="openModal(this)">
+                    <img src="{{ url_for('static', filename='images/after_co/arrow.png') }}" alt="Open">
+                </button>
+            </div>
+        {%endfor%}
+        </div>
+    </div>
+</div>
+<!--POPUP-->
+<div id="documentModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <button class="modal-close" id="closeModalBtn" onclick="document.getElementById('documentModal').style.display='none';">&times;</button>
+        <h2 id="modalCategory"></h2>
+        <h3 id="modalType"></h3>
+        <p id="modalDescription" class="modal-desc"></p>
+        <button class="modal-action-btn">
+            <span id="modalBtnType"></span>
+            <img src="{{ url_for('static', filename='images/after_co/download.png') }}" alt="Arrow" style="width:18px;vertical-align:middle;margin-left:8px;">
+        </button>
+    </div>
+</div>
+{%endblock%}

@@ -27,7 +27,7 @@ def dashboard():
             )
         )
 
-    # GEMINI
+    """# GEMINI
     if 'answers' not in session:
         session['answers'] = []
     if request.method == 'POST':
@@ -35,11 +35,11 @@ def dashboard():
         if msg:
             ans = generativeai(input=msg)
             session['answers'].append((msg, ans))
-            session.modified=True
+            session.modified=True"""
             
-    # UPLOAD FILES
+    # SHOW UPLOADED FILES
     files = Document.query.filter_by(emp_id=current_user.id).all()
-    return render_template('user.html', user=current_user, answers=session['answers'], files=files)
+    return render_template('employee/profil_emp.html', user=current_user, files=files)#answers=session['answers'], files=files)
 
 @bp.route('/events', methods=['GET', 'POST']) 
 @login_required
@@ -51,7 +51,7 @@ def events():
     all_events = Event.query.all()
     return render_template('events.html', user=current_user, events=events, all_events=all_events)
 
-@bp.route('/upload', methods=['POST'])
+"""@bp.route('/upload', methods=['POST'])
 @login_required
 def upload():
     if current_user.role != 'employee':
@@ -70,5 +70,5 @@ def upload():
             db.session.commit()
             flash("File uploaded successfully")
             
-    return redirect(url_for('main.dashboard'))
+    return redirect(url_for('main.dashboard'))"""
 

@@ -41,9 +41,12 @@ class Document(db.Model, UserMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     emp_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    filename = db.Column(db.String(150), nullable=False)
+    category= db.Column(db.String(150), nullable=False)
+    type_file = db.Column(db.String(50), nullable=False)  
     data = db.Column(db.LargeBinary, nullable=False)
+    description = db.Column(db.String(150), nullable=True)
     file_ext = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(50), default='pending')  # pending, approved, rejected
       
     #relationships
     proprietaire = db.relationship('User', backref='documents')

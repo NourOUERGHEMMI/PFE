@@ -23,6 +23,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def valid_file(request, id):
+    """
     uploaded_file = request.files.get('file')
     if not uploaded_file or uploaded_file.filename == '':
         flash('No selected file', 'error')
@@ -39,8 +40,8 @@ def valid_file(request, id):
             file_ext=filename.rsplit('.', 1)[1].lower(),
             data=uploaded_file.read(),
             emp_id=id
-        )
-    return new_document
+        )"""
+    return None
     
 def create_admin(db):
     admin = User(
@@ -60,11 +61,29 @@ def create_admin(db):
         email=f"user@user",
         mdp=generate_password_hash('user'),
         role="employee",
-        status=1
-    ) 
+        status=1,
+        img=b'',
+        nom="ahmed",
+        prenom="ben ahmed",
+        pays="Tunisia",
+        secteur="IT",
+        poste="Developer"
+    )
     db.session.add(rh)
     db.session.add(user)
     db.session.add(admin)
+    db.session.commit()
+    #TEST DOCUMENT
+    doc = Document(
+        emp_id=user.id,
+        category='CATEGORY',
+        type_file='TYPE FILE',
+        data=b'This is a test document.',
+        description='Test document for user',
+        file_ext='pdf',
+        status='rejected'  # pending, approved, rejected
+    )
+    db.session.add(doc)
     db.session.commit()
 
 def verif_signup(signup_req):
