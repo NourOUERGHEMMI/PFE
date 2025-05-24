@@ -443,7 +443,9 @@ hr {
     color: white;
 }
 
-.your-documents {
+
+/*
+ .your-documents {
     margin-bottom: 40px;
 }
 
@@ -530,6 +532,7 @@ hr {
 .doc-action-btn:hover {
     background: rgba(255, 255, 255, 0.13);
 }
+*/
 
 .profile-main-content {
     display: flex;
