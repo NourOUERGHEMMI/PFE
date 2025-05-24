@@ -1,0 +1,241 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-image: url(after_co/bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .profile-header,
+    .profile-content {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .events-list {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: unset;
+        bottom: 24px;
+        transform: none;
+        width: 90vw;
+        height: 60px;
+        flex-direction: row;
+        border-radius: 24px;
+        min-height: unset;
+        padding: 0 10px;
+        justify-content: center;
+        border-top-left-radius: 24px;
+        border-bottom-left-radius: 24px;
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px;
+    }
+    .sidebar nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+    .sidebar-top,
+    .sidebar-bottom {
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        margin: 0;
+    }
+    .sidebar-bottom {
+        margin-top: 0;
+    }
+    .sidebar-link {
+        padding: 6px 8px;
+        border-radius: 12px;
+    }
+    .sidebar-label {
+        display: none;
+    }
+    .profile-container {
+        margin-left: 0;
+    }
+}
+
+
+/* Décale le contenu principal à droite du sidebar sur desktop */
+
+@media (min-width: 901px) {
+    .profile-container {
+        margin-left: 60px;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 55px;
+    background: rgba(255, 255, 255, 0.104);
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-left: 0px;
+    -webkit-backdrop-filter: blur(16px);
+    border-top-right-radius: 48px;
+    border-bottom-right-radius: 48px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 2px 0 24px 0 rgba(31, 38, 135, 0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 200;
+    transition: width 0.35s cubic-bezier(.4, 2, .6, 1), box-shadow 0.2s;
+    padding: 18px 0 18px 0;
+    min-height: 480px;
+    justify-content: space-between;
+    overflow: visible;
+    backdrop-filter: blur(5px);
+}
+
+.sidebar:hover,
+.sidebar:focus-within {
+    width: 220px;
+    box-shadow: 8px 0 32px 0 rgba(31, 38, 135, 0.18);
+}
+
+.sidebar nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-top,
+.sidebar-bottom {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.sidebar-bottom {
+    margin-top: 40px;
+    align-items: flex-start;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    padding: 8px 14px 8px 12px;
+    border-radius: 18px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+    font-size: 14px;
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus {
+    color: #44A8F3 !important;
+    background: none !important;
+}
+
+.sidebar-link:hover .sidebar-icon,
+.sidebar-link:focus .sidebar-icon {
+    filter: drop-shadow(0 0 8px #44A8F3);
+}
+
+.sidebar-icon {
+    width: 20px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.sidebar-label {
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+    transition: opacity 0.25s, visibility 0.25s, color 0.2s;
+}
+
+.sidebar:hover .sidebar-label,
+.sidebar:focus-within .sidebar-label {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar-link.active .sidebar-label {
+    color: #44A8F3;
+}
+
+.profile-navbar {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-left .profile-title {
+    font-size: 35px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.notif-icon img {
+    width: 28px;
+    height: auto;
+    cursor: pointer;
+}
+
+.notif-icon img:hover {
+    filter: drop-shadow(0 0 6px #ffffff);
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    margin-right: 8px;
+    margin-left: 8px;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-photo img {
+    width: 33px;
+    height: auto;
+}

@@ -1,0 +1,174 @@
+<div class="created-events">
+    <div class="section-header">
+        <h3>Your Created Events</h3>
+        <div class="filter-section">
+            <select class="filter-select" id="eventFilter">
+                            <option value="all">All Sectors</option>
+                            <option value="automotive">Automotive</option>
+                            <option value="technology">Technology</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="energy">Energy</option>
+                            <option value="healthcare">Healthcare</option>
+                        </select>
+        </div>
+    </div>
+    <div class="events-list">
+        <div class="event-card" data-sector="automotive">
+            <img src="img_landing/event1.jpg" alt="Industry Conference" />
+            <div class="event-info">
+                <span class="event-type">Industry Conference</span>
+                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                <div class="event-meta">
+                    <span>18.03.2026</span>
+                    <span>10:30</span>
+                </div>
+            </div>
+        </div>
+        <!-- Les autres event-cards seront générées dynamiquement depuis la base de données -->
+    </div>
+</div>
+<div class="your-ideas">
+    <div class="section-header">
+        <h3>Your Ideas</h3>
+        <div class="filter-section">
+            <select class="filter-select" id="ideaFilter">
+                <option value="all">All Sectors</option>
+                <option value="automotive">Construction & Public Sector</option>
+                <option value="technology">Automotive</option>
+                <option value="manufacturing">Risk & Insurance</option>
+                <option value="energy">Industry</option>
+                <option value="healthcare">Retail</option>
+            </select>
+        </div>
+    </div>
+    <div class="ideas-list">
+        <div class="idea-card" data-sector="automotive">
+            <h4>Intelligent maintenance planning</h4>
+            <p>Propose a digital system for scheduling maintenance outside peak periods, to limit machine downtime and optimize production.</p>
+            <button class="delete-idea-btn" data-idea-id="1"><img src="after_co/poub.png" alt="Delete"></button>
+        </div>
+        <!-- Les autres idea-cards seront générées dynamiquement depuis la base de données -->
+    </div>
+</div>
+
+<script>
+    // Fonction pour filtrer les événements
+    document.getElementById('eventFilter').addEventListener('change', function(e) {
+        const selectedSector = e.target.value;
+        const eventCards = document.querySelectorAll('.event-card');
+
+        eventCards.forEach(card => {
+            if (selectedSector === 'all' || card.dataset.sector === selectedSector) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Fonction pour filtrer les idées
+    document.getElementById('ideaFilter').addEventListener('change', function(e) {
+        const selectedSector = e.target.value;
+        const ideaCards = document.querySelectorAll('.idea-card');
+
+        ideaCards.forEach(card => {
+            if (selectedSector === 'all' || card.dataset.sector === selectedSector) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Fonction pour supprimer une idée
+    document.querySelectorAll('.delete-idea-btn').forEach(button => {
+        button.addEventListener('click', async function() {
+            const ideaId = this.dataset.ideaId;
+            if (confirm('Are you sure you want to delete this idea?')) {
+                try {
+                    const response = await fetch(`/api/ideas/${ideaId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        this.closest('.idea-card').remove();
+                    } else {
+                        alert('Failed to delete idea');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the idea');
+                }
+            }
+        });
+    });
+
+    // Fonction pour charger les événements depuis la base de données
+    async function loadEvents() {
+        try {
+            const response = await fetch('/api/events');
+            const events = await response.json();
+
+            const eventsList = document.querySelector('.events-list');
+            eventsList.innerHTML = ''; // Clear existing events
+
+            events.forEach(event => {
+                const eventCard = `
+                    <div class="event-card" data-sector="${event.sector}">
+                        <img src="${event.image}" alt="${event.title}" />
+                        <div class="event-info">
+                            <span class="event-type">${event.title}</span>
+                            <p>${event.description}</p>
+                            <div class="event-meta">
+                                <span>${event.date}</span>
+                                <span>${event.time}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                eventsList.innerHTML += eventCard;
+            });
+        } catch (error) {
+            console.error('Error loading events:', error);
+        }
+    }
+
+    // Fonction pour charger les idées depuis la base de données
+    async function loadIdeas() {
+        try {
+            const response = await fetch('/api/ideas');
+            const ideas = await response.json();
+
+            const ideasList = document.querySelector('.ideas-list');
+            ideasList.innerHTML = ''; // Clear existing ideas
+
+            ideas.forEach(idea => {
+                const ideaCard = `
+                    <div class="idea-card" data-sector="${idea.sector}">
+                        <h4>${idea.title}</h4>
+                        <p>${idea.description}</p>
+                        <button class="delete-idea-btn" data-idea-id="${idea.id}">
+                            <img src="after_co/poub.png" alt="Delete">
+                        </button>
+                    </div>
+                `;
+                ideasList.innerHTML += ideaCard;
+            });
+        } catch (error) {
+            console.error('Error loading ideas:', error);
+        }
+    }
+
+    // Charger les données au chargement de la page
+    document.addEventListener('DOMContentLoaded', () => {
+        loadEvents();
+        loadIdeas();
+    });
+</script>
+
+</body>
+
+</html>

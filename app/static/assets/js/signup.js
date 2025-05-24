@@ -22,4 +22,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('step-1').classList.add('active');
         document.getElementById('step-1').style.display = 'block';
     };
+
+    window.goBackToPersonalInfo = function() {
+        document.getElementById('step-3').classList.remove('active');
+        document.getElementById('step-3').style.display = 'none';
+
+        document.getElementById('step-2').classList.add('active');
+        document.getElementById('step-2').style.display = 'block';
+    };
+
+    window.goToNextStep = function() {
+        const choice = userChoiceInput.value;
+
+        if (choice === 'employee') {
+            document.getElementById('step-2').classList.remove('active');
+            document.getElementById('step-2').style.display = 'none';
+
+            document.getElementById('step-3').classList.add('active');
+            document.getElementById('step-3').style.display = 'block';
+        } else {
+            // Si c'est un RH, on soumet directement le formulaire
+            document.getElementById('multiStepForm').submit();
+        }
+    };
 });

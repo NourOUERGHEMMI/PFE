@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VirtuLink</title>
+    <link rel="icon" type="image/png" href="header/logo_icn.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="header_afterco.css">
+    <link rel="stylesheet" href="body_landing.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="profil.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <nav>
+            <ul class="sidebar-top">
+                <li>
+                    <a href="#" class="sidebar-link active">
+                        <img src="after_co/globe.png" alt="Globe" class="sidebar-icon">
+                        <span class="sidebar-label">Globe</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/Home.png" alt="Home" class="sidebar-icon">
+                        <span class="sidebar-label">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/multi-bubble.png" alt="Chat" class="sidebar-icon">
+                        <span class="sidebar-label">Chat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/Paper.png" alt="Paper" class="sidebar-icon">
+                        <span class="sidebar-label">Paper</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/box-iso.png" alt="Box" class="sidebar-icon">
+                        <span class="sidebar-label">Box</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/multi-mac-os-window.png" alt="Window" class="sidebar-icon">
+                        <span class="sidebar-label">Window</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="sidebar-bottom">
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/settings.png" alt="Settings" class="sidebar-icon">
+                        <span class="sidebar-label">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <img src="after_co/log-out.png" alt="Logout" class="sidebar-icon">
+                        <span class="sidebar-label">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="profile-container">
+        <nav class="profile-navbar">
+            <div class="navbar-left">
+                <span class="profile-title">Profile</span>
+            </div>
+            <div class="navbar-right">
+                <span class="notif-icon">
+                    <img src="after_co/notif.png" alt="Notifications" />
+                </span>
+                <div class="user">
+                    <span class="user-name">user.name</span>
+                    <span class="profile-photo">
+                    <img src="after_co/user.png" alt="Profile Photo" />
+                </span>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <div class="profile-header">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img src="after_co/user-circle.png" alt="Profile Photo" />
+                    </div>
+                    <div class="profile-details">
+                        <h2>Tarek OUERGHEMMI</h2>
+                        <p>Date of registration: 08.04.2025</p>
+                        <p>E-mail: to@gmail.com</p>
+                        <p>Country: Tunisia</p>
+                        <p>Industry: Automotive</p>
+                        <p>Job Title: IT Director</p>
+                    </div>
+                    <button class="edit-profile-btn" onclick="showEditProfile()">
+                    <img src="after_co/edit-pencil.png" alt="Edit" />
+                </button>
+                </div>
+                <div class="profile-edit" style="display: none;">
+                    <form id="editProfileForm" enctype="multipart/form-data">
+                        <div class="edit-profile-header">
+                            <div class="edit-avatar">
+                                <label for="profileImage" class="avatar-upload">
+                                <img src="after_co/user-circle.png" alt="Profile" class="avatar-img" />
+                                <span class="avatar-plus">+</span>
+                            </label>
+                                <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display:none;" />
+                            </div>
+                            <button type="button" class="edit-arrow-next" onclick="submitEditProfile()">
+                            <img src="after_co/retoure.png" alt="Submit" />
+                        </button>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div class="edit-fields">
+                                <div class="edit-field">
+                                    <label>Name</label>
+                                    <input type="text" name="name" placeholder="Name" value="Tarek" required />
+                                </div>
+                                <div class="edit-field">
+                                    <label>Lastname</label>
+                                    <input type="text" name="lastname" placeholder="Lastname" value="OUERGHEMMI" required />
+                                </div>
+                                <div class="edit-field">
+                                    <label>Mail</label>
+                                    <input type="email" name="email" placeholder="login@gmail.com" value="to@gmail.com" required />
+                                </div>
+                                <div class="edit-field">
+                                    <label>Your Country</label>
+                                    <select name="country" required>
+                                <option value="">Your Country</option>
+                                <option value="Tunisia" selected>Tunisia</option>
+                                <!-- autres pays -->
+                            </select>
+                                </div>
+                                <div class="edit-field">
+                                    <label>Industry</label>
+                                    <select name="industry" required>
+                                <option value="">Industry</option>
+                                <option value="Automotive" selected>Automotive</option>
+                                <!-- autres industries -->
+                            </select>
+                                </div>
+                                <div class="edit-field">
+                                    <label>Job Title</label>
+                                    <select name="job" required>
+                                <option value="">Job Title</option>
+                                <option value="IT Director" selected>IT Director</option>
+                                <!-- autres jobs -->
+                            </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-profile-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <h3>Add An Idea</h3>
+                    <div class="add-idea">
+                        <div class="idea-form-container">
+                            <div class="idea-form">
+                                <label for="title">Add a title</label>
+                                <input type="text" placeholder="Title ..." class="idea-title" />
+                            </div>
+                            <hr>
+                            <div class="idea-form">
+                                <label for="idea">Write your idea</label>
+                                <textarea class="idea-text" placeholder="Write your idea ..."></textarea>
+                            </div>
+                        </div>
+                        <button class="share-btn">Share</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="profile-content">
+                <div class="created-events">
+                    <div class="section-header">
+                        <h3>Your Created Events</h3>
+                        <div class="filter-section">
+                            <select class="filter-select" id="ideaFilter">
+                            <option value="all">All Sectors</option>
+                            <option value="automotive">Construction & Public Sector</option>
+                            <option value="technology">Automotive</option>
+                            <option value="manufacturing">Risk & Insurance</option>
+                            <option value="energy">Industry</option>
+                            <option value="healthcare">Retail</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="events-list">
+                        <div class="event-card" style="background-image: url('after_co/automotive.png');">
+                            <div class="event-overlay">
+                                <div class="event-arrow">
+                                    <img src="after_co/arrow.png" alt="Go" />
+                                </div>
+                                <span class="event-type">Industry Conference</span>
+                                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                                <div class="event-meta">
+                                    <span><img src="after_co/callender.png" alt="date" /> 10.03.2026</span>
+                                    <span><img src="after_co/horloge.png" alt="time" /> 10H30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-card" style="background-image: url('after_co/industry.png');">
+                            <div class="event-overlay">
+                                <div class="event-arrow">
+                                    <img src="after_co/arrow.png" alt="Go" />
+                                </div>
+                                <span class="event-type">Automotive Event</span>
+                                <p>A showcase of innovation and design in the automotive industry, featuring technology.</p>
+                                <div class="event-meta">
+                                    <span><img src="after_co/callender.png" alt="date" /> 10.03.2026</span>
+                                    <span><img src="after_co/horloge.png" alt="time" /> 10H30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-card" style="background-image: url('after_co/automotive.png');">
+                            <div class="event-overlay">
+                                <div class="event-arrow">
+                                    <img src="after_co/arrow.png" alt="Go" />
+                                </div>
+                                <span class="event-type">Industry Conference</span>
+                                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                                <div class="event-meta">
+                                    <span><img src="after_co/callender.png" alt="date" /> 10.03.2026</span>
+                                    <span><img src="after_co/horloge.png" alt="time" /> 10H30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-card" style="background-image: url('after_co/industry.png');">
+                            <div class="event-overlay">
+                                <div class="event-arrow">
+                                    <img src="after_co/arrow.png" alt="Go" />
+                                </div>
+                                <span class="event-type">Automotive Event</span>
+                                <p>A showcase of innovation and design in the automotive industry, featuring technology.</p>
+                                <div class="event-meta">
+                                    <span><img src="after_co/callender.png" alt="date" /> 10.03.2026</span>
+                                    <span><img src="after_co/horloge.png" alt="time" /> 10H30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-card" style="background-image: url('after_co/automotive.png');">
+                            <div class="event-overlay">
+                                <div class="event-arrow">
+                                    <img src="after_co/arrow.png" alt="Go" />
+                                </div>
+                                <span class="event-type">Industry Conference</span>
+                                <p>An industry conference spotlighting innovation, the future of industrial technology.</p>
+                                <div class="event-meta">
+                                    <span><img src="after_co/callender.png" alt="date" /> 10.03.2026</span>
+                                    <span><img src="after_co/horloge.png" alt="time" /> 10H30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-card" style="background-image: url('after_co/industry.png');">
+                            <div class="event-overlay">
+                                <div class="event-arrow">
+                                    <img src="after_co/arrow.png" alt="Go" />
+                                </div>
+                                <span class="event-type">Automotive Event</span>
+                                <p>A showcase of innovation and design in the automotive industry, featuring technology.</p>
+                                <div class="event-meta">
+                                    <span><img src="after_co/callender.png" alt="date" /> 10.03.2026</span>
+                                    <span><img src="after_co/horloge.png" alt="time" /> 10H30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            <div class="your-ideas">
+                <h3>Your Ideas</h3>
+                <div class="ideas-list">
+                    <div class="idea-card">
+                        <h4>Intelligent maintenance planning</h4>
+                        <p>Propose a digital system for scheduling maintenance outside peak periods, to limit machine downtime and optimize production.</p>
+                        <button class="delete-idea-btn"><img src="after_co/poub.png" alt="Delete"></button>
+                    </div>
+                    <div class="idea-card">
+                        <h4>Intelligent maintenance planning</h4>
+                        <p>Propose a digital system for scheduling maintenance outside peak periods, to limit machine downtime and optimize production.</p>
+                        <button class="delete-idea-btn"><img src="after_co/poub.png" alt="Delete"></button>
+                    </div>
+                    <div class="idea-card">
+                        <h4>Intelligent maintenance planning</h4>
+                        <p>Propose a digital system for scheduling maintenance outside peak periods, to limit machine downtime and optimize production.</p>
+                        <button class="delete-idea-btn"><img src="after_co/poub.png" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="profil.js"></script>
+</body>
+
+</html>
